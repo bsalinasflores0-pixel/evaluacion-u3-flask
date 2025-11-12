@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="static/css/estiloejercicio1.css">
+    <title>Formulario de Notas</title>
+</head>
+<body>
+<div class="container">
+    <h1>Formulario de Notas</h1>
+
+    {% if errores and errores|length > 0 %}
+    <div class="errores">
+        <ul>
+            {% for e in errores %}<li>{{ e }}</li>{% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+
+<form action="/ejercicio1" method="POST">
+    <label for="nota1">Nota 1:</label>
+    <input type="number" id="nota1" name="nota1" min="10" max="70" step="0.1" required value="{{ nota1 or '' }}">
+    <br>
+
+    <label for="nota2">Nota 2:</label>
+    <input type="number" id="nota2" name="nota2" min="10" max="70" step="0.1" required value="{{ nota2 or '' }}">
+    <br>
+
+    <label for="nota3">Nota 3:</label>
+    <input type="number" id="nota3" name="nota3" min="10" max="70" step="0.1" required value="{{ nota3 or '' }}">
+    <br>
+
+    <label for="asistencia">Asistencia (%):</label>
+    <input type="number" id="asistencia" name="asistencia" min="0" max="100" step="0.1" required value="{{ asistencia or '' }}">
+    <br>
+
+    <button type="submit">Enviar</button>
+</form>
+
+{% if resultado %}
+
+<div>
+    <p>Se ingresaron las notas {{ nota1 }}, {{ nota2 }}, {{ nota3 }} y asistencia de {{ asistencia }}%.</p>
+    <p>El promedio es: <strong>{{ resultado.promedio }}</strong></p>
+    <p>Estado final: <strong>{{ resultado.estado }}</strong></p>
+</div>
+{% endif %}
+</div>
+</body>
+</html>

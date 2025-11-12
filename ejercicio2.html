@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/estiloejercicio2.css">
+    <title>Nombre más largo</title>
+</head>
+<body>
+<div class="container">
+    <h1>Nombre más largo</h1>
+
+    {% if error %}
+    <div class="errores">
+        {{ error }}
+    </div>
+    {% endif %}
+
+<form action="/ejercicio2" method="POST">
+    <div class="grupo">
+        <label for="nombre1">Nombre 1:</label>
+        <input type="text" id="nombre1" name="nombre1" required value="{{ nombre1 or '' }}">
+    </div>
+
+    <div class="grupo">
+        <label for="nombre2">Nombre 2:</label>
+        <input type="text" id="nombre2" name="nombre2" required value="{{ nombre2 or '' }}">
+    </div>
+
+    <div class="grupo">
+        <label for="nombre3">Nombre 3:</label>
+        <input type="text" id="nombre3" name="nombre3" required value="{{ nombre3 or '' }}">
+    </div>
+
+    <div class="acciones">
+        <button type="submit">Enviar</button>
+    </div>
+</form>
+
+{% if salida %}
+<div class="resultado">
+    <p>El nombre con mayor cantidad de caracteres es : <strong>{{ salida.nombre }}</strong></p>
+    <p>El nombre tiene : <strong>{{ salida.largo }}</strong> caracteres</p>
+</div>
+{% endif %}
+</div>
+</body>
+</html>
